@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">NeoCalendar</string>
+
+    <string-array name="week_title_list">
+        <!--        <item>S</item>-->
+        <!--        <item>M</item>-->
+        <!--        <item>T</item>-->
+        <!--        <item>W</item>-->
+        <!--        <item>T</item>-->
+        <!--        <item>F</item>-->
+        <!--        <item>S</item>-->
+        <item>日</item>
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+    </string-array>
 </resources>
