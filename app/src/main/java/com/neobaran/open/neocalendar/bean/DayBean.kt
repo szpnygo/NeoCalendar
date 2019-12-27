@@ -1,6 +1,5 @@
 package com.neobaran.open.neocalendar.bean
 
-import com.neobaran.open.neocalendar.R
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -21,6 +20,8 @@ class DayBean : Serializable {
     //空日期
     var isEmptyDay = false
 
+    var type = 0 //0 current month -1 last month 1 next month
+
     constructor() {
         this.isEmptyDay = true
     }
@@ -30,11 +31,12 @@ class DayBean : Serializable {
         this.showData = title
     }
 
-    constructor(year: Int, month: Int, day: Int) {
+    constructor(year: Int, month: Int, day: Int, type: Int = 0) {
         this.year = year
         this.month = month
         this.day = day
         this.showData = day.toString()
+        this.type = type
     }
 
     fun date(): String {

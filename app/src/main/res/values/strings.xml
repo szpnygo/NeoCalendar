@@ -17,4 +17,23 @@
         <item>五</item>
         <item>六</item>
     </string-array>
+
+    <string-array name="month_list">
+        <item>一 月</item>
+        <item>二 月</item>
+        <item>三 月</item>
+        <item>四 月</item>
+        <item>五 月</item>
+        <item>六 月</item>
+        <item>七 月</item>
+        <item>八 月</item>
+        <item>九 月</item>
+        <item>十 月</item>
+        <item>十一 月</item>
+        <item>十二 月</item>
+    </string-array>
+
+    <string name="show_year">%1$s年</string>
+
+
 </resources>

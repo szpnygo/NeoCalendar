@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.neobaran.open.neocalendar.R
@@ -27,6 +28,11 @@ class DayAdapter(private val context: Context) :
         val day = getItem(position)
         with(holder.itemView) {
             date_day.text = day.showData
+            if (day.type == 0) {
+                date_day.setTextColor(ContextCompat.getColor(context, R.color.text_main))
+            } else {
+                date_day.setTextColor(ContextCompat.getColor(context, R.color.text_disable))
+            }
         }
     }
 
