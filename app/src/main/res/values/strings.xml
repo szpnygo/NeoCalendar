@@ -34,6 +34,7 @@
     </string-array>
 
     <string name="show_year">%1$s年</string>
+    <string name="show_date">MMMd日 E</string>
 
 
 </resources>

@@ -8,7 +8,9 @@ import androidx.core.os.ConfigurationCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.neobaran.open.neocalendar.R
 import com.neobaran.open.neocalendar.adapter.MonthAdapter
+import com.neobaran.open.neocalendar.bean.DayBean
 import com.neobaran.open.neocalendar.bean.MonthBean
+import com.neobaran.open.neocalendar.day
 import com.neobaran.open.neocalendar.month
 import com.neobaran.open.neocalendar.year
 import kotlinx.android.synthetic.main.month_view_pager.view.*
@@ -20,10 +22,18 @@ class MonthViewPager @JvmOverloads constructor(
 
     private val list = arrayListOf<MonthBean>()
     private val adapter = MonthAdapter(list)
+
+    private val selectedDay: DayBean = DayBean(1970, 0, 1)
+
     private var monthSelectedListener: ((month: MonthBean) -> Unit)? = null
+    private var daySelectedListener: ((day: DayBean) -> Unit)? = null
 
     fun setMonthSelectedListener(l: (month: MonthBean) -> Unit) {
         monthSelectedListener = l
+    }
+
+    fun setDaySelectedListener(l: (day: DayBean) -> Unit) {
+        daySelectedListener = l
     }
 
     init {
@@ -48,6 +58,8 @@ class MonthViewPager @JvmOverloads constructor(
     fun initData() {
         val cal =
             Calendar.getInstance(ConfigurationCompat.getLocales(resources.configuration)[0]).apply {
+                //设置今日
+                updateSelectedDay(year(), month(), day())
                 set(Calendar.YEAR, 1970)
                 set(Calendar.MONTH, 0)
             }
@@ -59,6 +71,21 @@ class MonthViewPager @JvmOverloads constructor(
 
         adapter.notifyDataSetChanged()
         month_view_pager.setCurrentItem(list.size - 3, false)
+    }
+
+    fun nextMonth() {
+        month_view_pager.setCurrentItem(month_view_pager.currentItem + 1, true)
+    }
+
+    fun prevMonth() {
+        month_view_pager.setCurrentItem(month_view_pager.currentItem - 1, true)
+    }
+
+    private fun updateSelectedDay(year: Int, month: Int, day: Int) {
+        selectedDay.update(year, month, day)
+        adapter.setSelectedDay(selectedDay)
+        adapter.notifyItemChanged(month_view_pager.currentItem)
+        daySelectedListener?.invoke(selectedDay)
     }
 
 }

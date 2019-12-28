@@ -5,13 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.neobaran.open.neocalendar.R
+import com.neobaran.open.neocalendar.bean.DayBean
 import com.neobaran.open.neocalendar.bean.MonthBean
 import kotlinx.android.synthetic.main.item_month.view.*
 
 class MonthAdapter(private var list: List<MonthBean>) :
     RecyclerView.Adapter<MonthAdapter.ItemViewHolder>() {
 
-    class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    private var selectedDay: DayBean? = null
+
+    fun setSelectedDay(d: DayBean) {
+        selectedDay = d
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
@@ -29,8 +34,11 @@ class MonthAdapter(private var list: List<MonthBean>) :
         val data = list[position]
         with(holder.itemView) {
             month_view.initData(data.year, data.month)
+            month_view.setSelectedDay(selectedDay)
         }
 
     }
+
+    class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
 }

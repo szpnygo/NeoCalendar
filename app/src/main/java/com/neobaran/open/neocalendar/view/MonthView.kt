@@ -7,6 +7,7 @@ import android.widget.RelativeLayout
 import com.neobaran.open.neocalendar.CalendarMonthUtil
 import com.neobaran.open.neocalendar.R
 import com.neobaran.open.neocalendar.adapter.DayAdapter
+import com.neobaran.open.neocalendar.bean.DayBean
 import kotlinx.android.synthetic.main.month_view.view.*
 
 class MonthView @JvmOverloads constructor(
@@ -14,6 +15,10 @@ class MonthView @JvmOverloads constructor(
 ) : RelativeLayout(context, attrs, defStyleAttr, defStyleRes) {
 
     private val dayAdapter: DayAdapter = DayAdapter(context)
+
+    fun setSelectedDay(d: DayBean?) {
+        dayAdapter.setSelectedDay(d)
+    }
 
     init {
         View.inflate(context, R.layout.month_view, this)
