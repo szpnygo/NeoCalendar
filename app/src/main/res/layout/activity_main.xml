@@ -98,7 +98,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.viewpager2.widget.ViewPager2
+                <com.neobaran.open.neocalendar.view.MonthViewPager
                     android:id="@+id/date_list"
                     android:layout_width="match_parent"
                     android:layout_height="280dp"
