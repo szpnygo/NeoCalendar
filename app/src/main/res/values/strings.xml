@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">NeoCalendar</string>
 
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
+
+    <string name="show_year">%1$s年</string>
+    <string name="show_date">MMMd日 E</string>
+
+
     <string-array name="week_title_list">
         <!--        <item>S</item>-->
         <!--        <item>M</item>-->
@@ -32,9 +39,5 @@
         <item>十一 月</item>
         <item>十二 月</item>
     </string-array>
-
-    <string name="show_year">%1$s年</string>
-    <string name="show_date">MMMd日 E</string>
-
 
 </resources>

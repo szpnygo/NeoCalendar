@@ -18,13 +18,13 @@ import java.util.*
 class DatePickerDialog : DialogFragment() {
 
     private var cancelListener: ((dialog: DatePickerDialog) -> Unit)? = null
-    private var okListener: ((dialog: DatePickerDialog) -> Unit)? = null
+    private var okListener: ((dialog: DatePickerDialog, selectedDay: DayBean?) -> Unit)? = null
 
     fun setCancelClickListener(l: (dialog: DatePickerDialog) -> Unit) {
         cancelListener = l
     }
 
-    fun setOkClickListener(l: (dialog: DatePickerDialog) -> Unit) {
+    fun setOkClickListener(l: (dialog: DatePickerDialog, selectedDay: DayBean?) -> Unit) {
         okListener = l
     }
 
@@ -69,7 +69,7 @@ class DatePickerDialog : DialogFragment() {
                 cancelListener?.invoke(this@DatePickerDialog)
             }
             btn_ok.setOnClickListener {
-                okListener?.invoke(this@DatePickerDialog)
+                okListener?.invoke(this@DatePickerDialog, selectedDay)
             }
         }
     }

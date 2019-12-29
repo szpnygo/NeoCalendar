@@ -2,6 +2,7 @@ package com.neobaran.open.neocalendar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.neobaran.open.neocalendar.view.DatePickerDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,8 +23,9 @@ class MainActivity : AppCompatActivity() {
             dialog.setCancelClickListener {
                 it.dismiss()
             }
-            dialog.setOkClickListener {
+            dialog.setOkClickListener { _, selectedDay ->
 
+                Log.i("test", "ok $selectedDay")
             }
             dialog.show(supportFragmentManager, "")
         }

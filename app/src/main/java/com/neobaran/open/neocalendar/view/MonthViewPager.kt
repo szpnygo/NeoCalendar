@@ -2,6 +2,7 @@ package com.neobaran.open.neocalendar.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
 import androidx.core.os.ConfigurationCompat
@@ -53,6 +54,14 @@ class MonthViewPager @JvmOverloads constructor(
                 }
             }
         })
+        adapter.setDaySelectedListener {
+            if (it.type == -1) {
+                prevMonth()
+            } else if (it.type == 1) {
+                nextMonth()
+            }
+            updateSelectedDay(it.year, it.month, it.day)
+        }
     }
 
     fun initData() {

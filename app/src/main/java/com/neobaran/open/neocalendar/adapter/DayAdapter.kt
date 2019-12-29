@@ -14,6 +14,12 @@ import kotlinx.android.synthetic.main.item_day.view.*
 class DayAdapter(private val context: Context) :
     ListAdapter<DayBean, DayAdapter.ItemViewHolder>(DayDiffCallback()) {
 
+    private var clickItemListener: ((day: DayBean) -> Unit)? = null
+
+    fun setOnClickItemListener(l: ((day: DayBean) -> Unit)) {
+        clickItemListener = l
+    }
+
     private var selectedDay: DayBean? = null
 
     fun setSelectedDay(d: DayBean?) {
@@ -33,6 +39,9 @@ class DayAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val day = getItem(position)
         with(holder.itemView) {
+            setOnClickListener {
+                clickItemListener?.invoke(day)
+            }
             date_day.text = day.showData
             if (day.type == 0) {
                 date_day.setTextColor(ContextCompat.getColor(context, R.color.text_main))

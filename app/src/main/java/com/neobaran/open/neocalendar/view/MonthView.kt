@@ -14,6 +14,12 @@ class MonthView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr, defStyleRes) {
 
+    private var clickItemListener: ((day: DayBean) -> Unit)? = null
+
+    fun setOnClickItemListener(l: ((day: DayBean) -> Unit)) {
+        clickItemListener = l
+    }
+
     private val dayAdapter: DayAdapter = DayAdapter(context)
 
     fun setSelectedDay(d: DayBean?) {
@@ -31,6 +37,9 @@ class MonthView @JvmOverloads constructor(
         }
 
         dayAdapter.submitList(CalendarMonthUtil(context, year, month).createMonthDayList())
+        dayAdapter.setOnClickItemListener {
+            clickItemListener?.invoke(it)
+        }
     }
 
 }

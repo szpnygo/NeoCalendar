@@ -12,6 +12,12 @@ import kotlinx.android.synthetic.main.item_month.view.*
 class MonthAdapter(private var list: List<MonthBean>) :
     RecyclerView.Adapter<MonthAdapter.ItemViewHolder>() {
 
+    private var daySelectedListener: ((day: DayBean) -> Unit)? = null
+
+    fun setDaySelectedListener(l: (day: DayBean) -> Unit) {
+        daySelectedListener = l
+    }
+
     private var selectedDay: DayBean? = null
 
     fun setSelectedDay(d: DayBean) {
@@ -35,6 +41,9 @@ class MonthAdapter(private var list: List<MonthBean>) :
         with(holder.itemView) {
             month_view.initData(data.year, data.month)
             month_view.setSelectedDay(selectedDay)
+            month_view.setOnClickItemListener {
+                daySelectedListener?.invoke(it)
+            }
         }
 
     }

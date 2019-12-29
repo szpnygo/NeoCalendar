@@ -1,6 +1,7 @@
 package com.neobaran.open.neocalendar.bean
 
 import java.io.Serializable
+import java.util.*
 
 class DayBean : Serializable {
 
@@ -38,6 +39,13 @@ class DayBean : Serializable {
         return "$year-$month-$day"
     }
 
+    fun getCalendar(): Calendar {
+        return Calendar.getInstance().apply {
+            set(Calendar.YEAR, year)
+            set(Calendar.MONTH, month)
+            set(Calendar.DAY_OF_MONTH, day)
+        }
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) {
@@ -57,5 +65,9 @@ class DayBean : Serializable {
         result = 31 * result + showData.hashCode()
         result = 31 * result + type
         return result
+    }
+
+    override fun toString(): String {
+        return "$year-$month-$day type:$type"
     }
 }
