@@ -44,11 +44,6 @@ class CalendarMonthUtil(
 
     @Suppress("UNCHECKED_CAST")
     fun createMonthDayList(): ArrayList<DayBean> {
-        val cacheList = MemoryCache.getInstance().get("$year-$month")
-        if (cacheList != null) {
-            return cacheList as ArrayList<DayBean>
-        }
-
         val dayList = arrayListOf<DayBean>()
         dayList.clear()
         //添加标题行
@@ -84,7 +79,6 @@ class CalendarMonthUtil(
             dayList.add(DayBean(calendar.year(), calendar.month(), i + 1, 1))
         }
         prevMonth()
-        MemoryCache.getInstance().set("$year-$month", dayList)
         return dayList
     }
 

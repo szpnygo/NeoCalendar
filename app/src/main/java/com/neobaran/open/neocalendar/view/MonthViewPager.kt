@@ -55,12 +55,15 @@ class MonthViewPager @JvmOverloads constructor(
             }
         })
         adapter.setDaySelectedListener {
+            updateSelectedDay(it.year, it.month, it.day)
             if (it.type == -1) {
                 prevMonth()
+
             } else if (it.type == 1) {
                 nextMonth()
+
             }
-            updateSelectedDay(it.year, it.month, it.day)
+
         }
     }
 
@@ -84,16 +87,18 @@ class MonthViewPager @JvmOverloads constructor(
 
     fun nextMonth() {
         month_view_pager.setCurrentItem(month_view_pager.currentItem + 1, true)
+        adapter.notifyItemChanged(month_view_pager.currentItem)
     }
 
     fun prevMonth() {
         month_view_pager.setCurrentItem(month_view_pager.currentItem - 1, true)
+        adapter.notifyItemChanged(month_view_pager.currentItem)
     }
 
     private fun updateSelectedDay(year: Int, month: Int, day: Int) {
         selectedDay.update(year, month, day)
         adapter.setSelectedDay(selectedDay)
-        adapter.notifyItemChanged(month_view_pager.currentItem)
+//        adapter.notifyItemChanged(month_view_pager.currentItem)
         daySelectedListener?.invoke(selectedDay)
     }
 

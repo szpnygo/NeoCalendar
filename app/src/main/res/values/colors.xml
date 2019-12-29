@@ -10,4 +10,7 @@
     <color name="text_about">#999999</color>
     <color name="text_disable">#bbbbbb</color>
     <color name="text_link">#007ffc</color>
+
+    <color name="selected_bg">#007ffc</color>
+    <color name="selected_text">#ffffff</color>
 </resources>

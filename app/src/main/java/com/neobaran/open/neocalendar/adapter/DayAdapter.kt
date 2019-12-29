@@ -1,6 +1,7 @@
 package com.neobaran.open.neocalendar.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,8 @@ class DayAdapter(private val context: Context) :
         selectedDay = d
     }
 
+    private var lastPosition = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -41,6 +44,8 @@ class DayAdapter(private val context: Context) :
         with(holder.itemView) {
             setOnClickListener {
                 clickItemListener?.invoke(day)
+                notifyItemChanged(position)
+                notifyItemChanged(lastPosition)
             }
             date_day.text = day.showData
             if (day.type == 0) {
@@ -50,7 +55,11 @@ class DayAdapter(private val context: Context) :
             }
 
             if (day == selectedDay) {
-                date_day.text = "T"
+                lastPosition = position
+                item_day.setBackgroundResource(R.drawable.ic_selected_bg)
+                date_day.setTextColor(ContextCompat.getColor(context, R.color.selected_text))
+            } else {
+                item_day.setBackgroundResource(0)
             }
         }
     }
